@@ -10,8 +10,8 @@ function validateParams({
   price,
   orderId,
 }: ProductInputtableTypes): string | null {
-  if (!name) return 'Name is required';
-  if (!price) return 'Price is required';
+  if (!name) return '"name" is required';
+  if (!price) return '"price" is required';
   if (!orderId) return 'orderId is required';
 
   return null;
@@ -25,7 +25,7 @@ const listProducts = async () : Promise<ServiceResponse<ProductSequelizeModel[]>
 
 const createProduct = async (
   product: ProductInputtableTypes,
-) : Promise<ServiceResponse<Product>> => {
+) : Promise<ServiceResponse<ProductSequelizeModel>> => {
   /* Definimos a variável que receberá o valor da resposta do service
   usando o mesmo tipo envelopado na Promise retornada! */
   let responseService: ServiceResponse<Product>;
@@ -40,13 +40,9 @@ const createProduct = async (
   }
 
   /* Se o objeto for válido, ele será cadastrado no banco! */
-  const newTransaction = await ProductModel.create(product);
+  const newProduct = await ProductModel.create(product);
 
-  /* Geramos o objeto que representa que o cadastro foi realizado com sucesso
-  e retorna a transação cadastrada! */
-  responseService = { status: 'SUCCESSFUL', data: newTransaction.dataValues };
-
-  return responseService;
+  return { status: 'CREATED', data: newProduct };
 };
 
 export default {

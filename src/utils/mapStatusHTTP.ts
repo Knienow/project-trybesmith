@@ -4,6 +4,8 @@ export default function mapStatusHTTP(status: string): number {
     UNAUTHORIZED: 401,
     NOT_FOUND: 404,
     SUCCESSFUL: 200,
+    UNPROCESSABLE_ENTITY: 422,
+    CREATED: 201,
   };
   
   return statusHTTPMap[status];

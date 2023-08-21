@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import loginService from '../services/login.service';
+import userService from '../services/user.service';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 
-const login = async (req: Request, res: Response) : Promise<Response> => {
-  const serviceResponse = await loginService.verifyLogin(req.body);
+const user = async (req: Request, res: Response) : Promise<Response> => {
+  const serviceResponse = await userService.verifyUser(req.body);
 
   if (serviceResponse.status !== 'SUCCESSFUL') {
     return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);  
@@ -13,5 +13,5 @@ const login = async (req: Request, res: Response) : Promise<Response> => {
 };
 
 export default {
-  login,
+  user,
 };

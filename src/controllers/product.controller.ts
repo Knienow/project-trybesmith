@@ -14,13 +14,9 @@ const listProducts = async (req: Request, res: Response) : Promise<Response> => 
 };
 
 const createProduct = async (req: Request, res: Response) : Promise<Response> => {
-  const { name, price, orderId } = req.body;
-  const serviceResponse = await productService.createProduct({ name, price, orderId });
-  if (serviceResponse.status !== 'SUCCESSFUL') {
-    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);  
-  }
-
-  return res.status(201).json(serviceResponse.data);
+  const product = req.body;
+  const serviceResponse = await productService.createProduct(product);
+  return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
 };
 
 export default {

@@ -6,12 +6,14 @@ const noPasswordLoginBody = { username: validUsername, password: '' };
 
 const notExistingUserBody = { username: 'usernamee', password: validPassword };
 
-const existingUserWithWrongPasswordBody = { userame: validUsername, password: 'wrong_password' };
-// const existingUser = {
-//   id: 1,
-//   username: validUsername,
-//   password: validPassword,
-// };
+const existingUserWithWrongPasswordBody = { username: validUsername, password: 'wrong_password' };
+const existingUser = {
+  id: 1,
+  username: validUsername,
+  password: validPassword,
+  vocation: 'teste',
+  level: 1,
+};
 
 const validLoginBody = { username: validUsername, password: validPassword };
 
