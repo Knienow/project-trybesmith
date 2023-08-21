@@ -16,7 +16,7 @@ describe('LoginController', function () {
   const req = {} as Request;
   const res = {} as Response;
   const messageUsernameOrPasswordEmpty = '"username" and "password" are required';
-  const messageUsernameOrPasswordInvalid = 'Username or password invalid';
+  // const messageUsernameOrPasswordInvalid = 'Username or password invalid';
   
   beforeEach(function () {
     res.status = sinon.stub().returns(res);
@@ -26,26 +26,21 @@ describe('LoginController', function () {
   
   describe('#login', function () {
     it('ao não receber um username, retorne um erro', async function () {
-      // Arrange
       req.body = loginMock.noUsernameLoginBody;
-      // Repare que, aqui, tipamos o valor de retorno do serviço para o tipo adequado.
-      // Para isso, fomos lá em src/services/login.service.ts e exportamos o tipo Token para usarmos aqui!
+
       const serviceResponse: ServiceResponse<Token> = {
         status: 'INVALID_DATA',
         data: { message: messageUsernameOrPasswordEmpty },
       }
       sinon.stub(UserService, 'verifyUser').resolves(serviceResponse);
     
-      // Act
       await userController.user(req, res);
       
-      // Assert
       expect(res.status).to.have.been.calledWith(400);
       expect(res.json).to.have.been.calledWith({ message: messageUsernameOrPasswordEmpty });
     });
 
     it('ao receber um username e uma senha válida, retorne um token de login', async function () {
-      // Arrange
       req.body = loginMock.validLoginBody;
       /* O serviço retorna uma token bcrypt válida. 
       Nesse teste unitário, tanto faz qual valor ela terá, contanto que 
@@ -58,10 +53,8 @@ describe('LoginController', function () {
       }
       sinon.stub(userService, 'verifyUser').resolves(serviceResponse);
       
-      // Act
       await userController.user(req, res);
       
-      // Assert
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(token);
     });

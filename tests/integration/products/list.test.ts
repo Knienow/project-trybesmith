@@ -6,6 +6,4 @@ chai.use(chaiHttp);
 
 describe('GET /products', function () { 
   beforeEach(function () { sinon.restore(); });
-  it('')
-
 });

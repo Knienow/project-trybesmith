@@ -4,8 +4,6 @@ import chaiHttp from 'chai-http';
 import app from '../../../src/app';
 import productMock from '../../mocks/product.mock';
 
-// import ProductModel from '../../../src/database/models/product.model';
-
 chai.use(chaiHttp);
 
 describe('POST /products', function () { 
@@ -17,6 +15,5 @@ describe('POST /products', function () {
 
     const response = (await chai.request(app).post('/products').send(product));
     expect(response.status).to.equal(201);
-    // expect(response.body).to.be.deep.equal(productMock.productCreated);
   });
 });
