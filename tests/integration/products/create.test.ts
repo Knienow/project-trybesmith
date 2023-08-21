@@ -12,8 +12,6 @@ describe('POST /products', function () {
   beforeEach(function () { sinon.restore(); });
   
   it('verifica se é possível criar um cadastro de produto com sucesso', async () => {
-    // const product = ProductModel.build(productMock.newProduct);
-    // sinon.stub(ProductModel, 'newProduct').resolves(product);
 
     const product = productMock.newProduct;
 
